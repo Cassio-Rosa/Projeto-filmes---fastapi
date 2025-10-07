@@ -20,7 +20,6 @@ def conectar():
     try:
         conexao = psycopg2.connect(**params)
         cursor = conexao.cursor()
-        print("Deu certo!")
         return conexao, cursor
     except Exception as erro:
         print(f"Erro de conexão {erro}")
