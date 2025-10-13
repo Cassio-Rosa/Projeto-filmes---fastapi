@@ -53,3 +53,21 @@ def listar_filme():
         finally:
             cursor.close()
             conexao.close()    
+
+
+def atualizar_filme(id, novo_titulo, novos_generos, novo_ano, nova_avalição ):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "UPDATE filmes SET titulo = %s,genero = %s, ano = %s, avaliacao = %s WHERE id = %s",
+                  ( novo_titulo, novos_generos, novo_ano, nova_avalição, id)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"Erro ao tentar atualizar a avaliação da tabela na tabela: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()    
+
+atualizar_filme(1, "rari poti 6 parte 9", "Magia, Poder", 2001, 6.9)
