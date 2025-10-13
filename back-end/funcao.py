@@ -1,4 +1,5 @@
 from conexao import conectar
+#pip install psycopg2 dotenv streamlit fastapi uvicorn requests
 
 def criar_tabela():
     conexao, cursor = conectar()
@@ -22,4 +23,21 @@ def criar_tabela():
             cursor.close()
             conexao.close()
 
-criar_tabela()
+
+
+def inserir_filmes(titulo, genero, ano, avaliacao):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "INSERT INTO filmes (titulo, genero, ano, avaliacao) VALUES (%s, %s, %s, %s)",
+                (titulo, genero, ano, avaliacao)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"Erro ao inserir filme na tabela: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
+
+inserir_filmes("Harry Potter", "Magia", 2009, 7.2)
