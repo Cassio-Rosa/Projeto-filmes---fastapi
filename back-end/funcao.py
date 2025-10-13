@@ -70,4 +70,15 @@ def atualizar_filme(id, novo_titulo, novos_generos, novo_ano, nova_avalição ):
             cursor.close()
             conexao.close()    
 
-atualizar_filme(1, "rari poti 6 parte 9", "Magia, Poder", 2001, 6.9)
+
+def deletar_filme(id_filme):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute("DELETE FROM filmes WHERE id = %s", (id_filme,))
+            conexao.commit()
+        except Exception as error:
+            print(F"Erro ao tentar deletar filme: {error}")
+        finally:
+            cursor.close()
+            conexao.close()
