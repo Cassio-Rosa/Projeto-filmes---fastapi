@@ -17,6 +17,7 @@ def criar_tabela():
                 )
             """)
             conexao.commit()
+            print("Deu bom")
         except Exception as erro:
             print(f"Erro ao criar tabela: {erro}")
         finally:
@@ -82,3 +83,5 @@ def deletar_filme(id_filme):
         finally:
             cursor.close()
             conexao.close()
+
+criar_tabela()
