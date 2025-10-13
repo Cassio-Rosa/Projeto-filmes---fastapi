@@ -84,4 +84,4 @@ def deletar_filme(id_filme):
             cursor.close()
             conexao.close()
 
-criar_tabela()
+
