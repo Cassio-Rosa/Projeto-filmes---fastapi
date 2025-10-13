@@ -40,4 +40,16 @@ def inserir_filmes(titulo, genero, ano, avaliacao):
             cursor.close()
             conexao.close()
 
-inserir_filmes("Harry Potter", "Magia", 2009, 7.2)
+
+def listar_filme():
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute("SELECT * FROM filmes ORDER BY id"
+            )
+            return cursor.fetchall()
+        except Exception as erro:
+            print(f"Erro ao tentar listar os filmes na tabela: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()    
