@@ -10,7 +10,7 @@ app = FastAPI(title="Gerenciador de filmes")
 
 @app.get("/")
 def home():
-    return {"mensagem": "Quero café prof"}
+    return {"mensagem": "Bem-vindos ao gerenciador de filmes"}
 
 @app.post("/filmes")
 def criar_filme(titulo:str, genero:str, ano:int, avaliacao: float):
@@ -27,6 +27,11 @@ def listar_filmes():
             "titulo": linha[1],
             "genero": linha[2],
             "ano": linha[3],
-            "avaliação": linha[4]
+            "avaliacao": linha[4]
             })
     return {"filmes": lista}
+
+@app.delete("/filmes")
+def deletar_filmes(id: int):
+    funcao.deletar_filme(id)
+    return {"mensagem": "Filme Deletado com Sucesso"}

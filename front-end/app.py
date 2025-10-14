@@ -20,7 +20,14 @@ if menu == "Catalogo":
     if response.status_code == 200:
         filmes = response.json().get("filmes", [])
         if filmes:
-            for filme in filmes:
-                st.write(f"{filme["titulo"]}")
+            tabela_filmes = {
+                "ID": [filme['ID'] for filme in filmes],
+                "Titulo": [filme['titulo'] for filme in filmes],
+                "Genero": [filme['genero'] for filme in filmes],
+                "Ano": [filme['ano'] for filme in filmes],
+                "Avaliação": [f"{filme['avaliacao']:.2f}" for filme in filmes]
+            }
+            
+            st.table(tabela_filmes)
     else:
         st.error("Erro ao acessar a API")
