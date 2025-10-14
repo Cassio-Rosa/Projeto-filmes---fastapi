@@ -45,4 +45,7 @@ elif menu == "Adicionar Filme":
             st.success("Filme adicionado com sucesso!")
         else:
             st.error("Erro ao adicionar o filme")
+
+
+    
     

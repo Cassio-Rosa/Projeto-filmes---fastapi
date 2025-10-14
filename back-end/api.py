@@ -35,3 +35,11 @@ def listar_filmes():
 def deletar_filmes(id: int):
     funcao.deletar_filme(id)
     return {"mensagem": "Filme Deletado com Sucesso"}
+
+@app.put("/filmes/{id_filmes}")
+def atualizar_filmes(id:int, novo_titulo:str, novos_generos:str, novo_ano:int, nova_avalição:float ):
+    filme = funcao.buscar_filme(id)
+    if filme:
+        funcao.atualizar_filme(id, novo_titulo, novos_generos, novo_ano, nova_avalição )
+        return {"mensagem":"Filme atualizado com sucesso!"}
+    return {"error": "filme não encontrado"}
